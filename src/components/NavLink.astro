@@ -1,0 +1,13 @@
+---
+const { title, link, className = '' } = Astro.props
+
+console.log('active', className)
+---
+
+<h1
+  class={`[font-family:'IBM_Plex_Mono-Regular',Helvetica] font-normal text- text-[20px] tracking-[0] leading-[normal] [text-transform:capitalize] `}
+>
+  <a class={`${className} [isActive]:bg-red`} href={link}>{title}</a>
+</h1>
+
+<script></script>

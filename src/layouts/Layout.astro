@@ -1,0 +1,61 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en" class="h-full antialiased bg-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="relative h-full dark:bg-black">
+    <div
+      class="flex m-auto w-[920px] h-full bg-[#fffdfdcc] shadow-[0px_4px_23px_10px_#95553566]"
+    >
+      <div
+        id="color-blend"
+        class="absolute top-0 right-0 left-0 bottom-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80"
+      >
+      </div>
+
+      <div
+        class="flex flex-row flex-1 w-full items-center px-20 py-0 relative"
+      >
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
+<style is:global>
+  body {
+    #color-blend {
+      mix-blend-mode: color-burn;
+    }
+    background: radial-gradient(
+        121.38% 73.52% at 50% 50%,
+        rgba(150, 86, 53, 0.4) 0%,
+        rgba(229, 191, 91, 0.34) 60.25%,
+        rgba(43, 112, 168, 0.45) 100%
+      ),
+      var(--blue, #fff);
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+</style>

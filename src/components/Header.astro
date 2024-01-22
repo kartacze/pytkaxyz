@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro'
+import NavLink from '../components/NavLink.astro'
+import ThemeIcon from '../components/ThemeIcon.astro'
+
+const pathname = new URL(Astro.request.url).pathname
+const currentPath = pathname.slice(1) // remove the first "/"
+
+const links = [
+  {
+    link: '',
+    title: 'home',
+  },
+  ...['about', 'blog', 'projects'].map((i) => ({ link: i, title: i })),
+]
+---
+
+<div class="flex flex-col items-start my-8 relative font-mono">
+  <div class="flex self-stretch w-full flex-[0_0_auto] items-center relative">
+    <div class="flex justify-between flex-1 grow items-center relative">
+      <nav class="inline-flex items-center gap-[12px] relative flex-[0_0_auto]">
+        {
+          links.map((link) => (
+            <NavLink
+              link={link.link}
+              title={link.title}
+              className={link.link === currentPath ? 'isActive' : ''}
+            />
+          ))
+        }
+      </nav>
+      <div class="inline-flex gap-[8px] flex-[0_0_auto] items-center relative">
+        <img class="relative w-[24px] h-[24px]" alt="Vector" src="vector.svg" />
+      </div>
+      {currentPath === '' ? 'DUPA' : currentPath}
+    </div>
+  </div>
+  <div class="h-1 color-" alt="Line" src="line-1.svg"></div>
+</div>

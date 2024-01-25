@@ -10,7 +10,7 @@ const { title = 'Pytka.xyz' } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en" class="h-full antialiased bg-white">
+<html lang="en" class="h-full w-full antialiased bg-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -22,7 +22,7 @@ const { title = 'Pytka.xyz' } = Astro.props
   </head>
   <body class="relative h-full dark:bg-black">
     <div
-      class="flex m-auto w-full max-w-[920px] h-full bg-[#fffdfdcc] shadow-[0px_4px_23px_10px_#95553566]"
+      class="flex m-auto w-full max-w-[920px] h-full sm:bg-[#fffdfdcc] sm:shadow-[0px_4px_23px_10px_#95553566]"
     >
       <div
         id="color-blend"
@@ -30,7 +30,7 @@ const { title = 'Pytka.xyz' } = Astro.props
       >
       </div>
 
-      <div class="flex flex-row flex-1 w-full items-center px-20 py-0 relative">
+      <div class="flex flex-row flex-1 w-full items-center sm:mx-20 mx-4 py-0 relative">
         <article
           class="flex flex-1 flex-col min-h-full border-primary-800 sm:gap-12 gap-8"
         >
@@ -39,40 +39,52 @@ const { title = 'Pytka.xyz' } = Astro.props
         </article>
       </div>
     </div>
+    <style is:global>
+      :root {
+        --blue: #2b70a8;
+        --brown: #965635;
+      }
+
+      html[data-theme='dark'] {
+        --blue: #aa00ff;
+        --brown: #905662;
+      }
+
+      html {
+        height: 100%;
+      }
+      body {
+        min-height: 100%;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        #color-blend {
+          mix-blend-mode: color-burn;
+        }
+        background: radial-gradient(
+            121.38% 73.52% at 50% 50%,
+            rgba(150, 86, 53, 0.4) 0%,
+            rgba(229, 191, 91, 0.34) 60.25%,
+            rgba(43, 112, 168, 0.45) 100%
+          ),
+          #fff;
+      }
+      code {
+        font-family:
+          Menlo,
+          Monaco,
+          Lucida Console,
+          Liberation Mono,
+          DejaVu Sans Mono,
+          Bitstream Vera Sans Mono,
+          Courier New,
+          monospace;
+      }
+    </style>
   </body>
 </html>
-<style is:global>
-  :root {
-    --blue: #2b70a8;
-    --brown: #965635;
-  }
-
-  html[data-theme='dark'] {
-    --blue: #aa00ff;
-    --brown: #905662;
-  }
-
-  body {
-    #color-blend {
-      mix-blend-mode: color-burn;
-    }
-    background: radial-gradient(
-        121.38% 73.52% at 50% 50%,
-        rgba(150, 86, 53, 0.4) 0%,
-        rgba(229, 191, 91, 0.34) 60.25%,
-        rgba(43, 112, 168, 0.45) 100%
-      ),
-      #fff;
-  }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
-  }
-</style>

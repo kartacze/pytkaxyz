@@ -1,5 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro'
 import NavLink from '../components/NavLink.astro'
 import ThemeIcon from '../components/ThemeIcon.astro'
 
@@ -8,15 +7,15 @@ const currentPath = pathname.slice(1) // remove the first "/"
 
 const links = [
   {
-    link: '',
+    link: '/',
     title: 'home',
   },
-  ...['about', 'blog', 'projects'].map((i) => ({ link: i, title: i })),
+  ...['about', 'blog', 'projects'].map((i) => ({ link: '/' + i, title: i })),
 ]
 ---
 
-<div class="flex flex-col items-start my-8 relative font-mono">
-  <div class="flex self-stretch w-full flex-[0_0_auto] items-center relative">
+<div class="flex flex-col items-start my-4 relative font-mono">
+  <div class="flex self-stretch w-full flex-[0_0_auto] items-center my-4">
     <div class="flex justify-between flex-1 grow items-center relative">
       <nav class="inline-flex items-center gap-[12px] relative flex-[0_0_auto]">
         {
@@ -24,16 +23,25 @@ const links = [
             <NavLink
               link={link.link}
               title={link.title}
-              className={link.link === currentPath ? 'isActive' : ''}
+              isActive={link.link === '/' + currentPath}
             />
           ))
         }
       </nav>
-      <div class="inline-flex gap-[8px] flex-[0_0_auto] items-center relative">
-        <img class="relative w-[24px] h-[24px]" alt="Vector" src="vector.svg" />
+      <div class="inline-flex gap-[8px] flex-[0_0_auto] items-center">
+        <a
+          rel="noopener noreferrer"
+          href="https://github.com/kartacze"
+          target="_blank"
+          class="w-7 h-7 i-carbon-logo-github dark:bg-white text-primary"></a>
+        <a
+          rel="noopener noreferrer"
+          href="https://www.linkedin.com/in/teodor-pytka/"
+          target="_blank"
+          class="w-7 h-7 i-carbon-logo-linkedin dark:bg-white text-primary"></a>
+        <ThemeIcon />
       </div>
-      {currentPath === '' ? 'DUPA' : currentPath}
     </div>
   </div>
-  <div class="h-1 color-" alt="Line" src="line-1.svg"></div>
+  <div class="h-[2px] bg-primary w-full"></div>
 </div>

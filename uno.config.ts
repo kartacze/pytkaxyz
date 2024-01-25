@@ -1,16 +1,34 @@
-import { defineConfig, presetMini, presetIcons, presetWebFonts } from 'unocss'
+import {
+  defineConfig,
+  presetUno,
+  presetIcons,
+  presetWebFonts,
+  presetAttributify,
+  presetTypography,
+} from 'unocss'
 
 export default defineConfig({
-  presets: [
-    presetMini({
-      theme: {
-        colors: {
-          brown: {
-            primary: '#965635',
-          },
-        },
+  rules: [
+    [
+      /^text-(.*)$/,
+      ([, c], { theme }) => {
+        if (theme.colors[c]) {
+          return {
+            color: theme.colors[c],
+          }
+        }
       },
-    }),
+    ],
+  ],
+  theme: {
+    colors: {
+      primary: 'var(--brown)',
+      brown: 'var(--brown)',
+    },
+  },
+  presets: [
+    presetAttributify(),
+    presetUno(),
     presetIcons({
       extraProperties: {
         display: 'inline-block',
@@ -24,5 +42,6 @@ export default defineConfig({
         mono: ['IBM Plex Mono', 'IBM Plex Mono:300,400'],
       },
     }),
+    presetTypography(),
   ],
 })

@@ -1,13 +1,11 @@
 ---
-const { title, link, className = '' } = Astro.props
-
-console.log('active', className)
+const { title, link, isActive } = Astro.props
 ---
 
 <h1
-  class={`[font-family:'IBM_Plex_Mono-Regular',Helvetica] font-normal text- text-[20px] tracking-[0] leading-[normal] [text-transform:capitalize] `}
+  class={`[font-family:'IBM_Plex_Mono-Regular',Helvetica] font-normal text-brown text-[20px] tracking-[0] leading-[normal] [text-transform:capitalize] text-primary ${isActive ? '' : 'opacity-60'}`}
 >
-  <a class={`${className} [isActive]:bg-red`} href={link}>{title}</a>
+  <a href={link}>{title}</a>
 </h1>
 
 <script></script>

@@ -17,7 +17,9 @@ const links = [
 <div class="flex flex-col items-start my-4 relative font-mono">
   <div class="flex self-stretch w-full flex-[0_0_auto] items-center my-4">
     <div class="flex justify-between flex-1 grow items-center relative">
-      <nav class="inline-flex items-center sm:gap-3 gap-2 relative flex-[0_0_auto]">
+      <nav
+        class="inline-flex items-center sm:gap-3 gap-2 relative flex-[0_0_auto]"
+      >
         {
           links.map((link) => (
             <NavLink
@@ -39,7 +41,9 @@ const links = [
           href="https://www.linkedin.com/in/teodor-pytka/"
           target="_blank"
           class="w-7 h-7 i-carbon-logo-linkedin dark:bg-white text-primary"></a>
-        <ThemeIcon />
+        <div>
+          <ThemeIcon />
+        </div>
       </div>
     </div>
   </div>

@@ -3,5 +3,42 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
-  <h1 class="i-carbon-windy text-4xl"></h1>
+  <main
+    transition:animate="fade"
+    class="flex flex-col items-start gap-16 relative"
+  >
+    <section class="flex flex-col gap-10">
+      <div class="flex flex-col">
+        <h1 class="text-4xl prose prose-truegray font-mono">Teodor Pytka</h1>
+      </div>
+      <div>
+        <p class="font-mono text-base">
+          I’m a full-stack developer based in Warsaw, Poland. I took part in
+          development of wide range of projects from content based pages to
+          banking and e-commerce application. From static to full-blown
+          real-time apps.
+        </p>
+      </div>
+      <p class="font-mono text-base">
+        Actively exploring elixir lang and mobile landscape, mainly by writing <a
+          rel="noopener noreferrer"
+          href="https://github.com/kartacze/turpia"
+          target="_blank"
+          class="underline"
+          >Turpia
+        </a> application, that is currently a WIP.
+      </p>
+      <p class="font-mono text-base">
+        I'm open to short-term consulting work. I have over six years of
+        experience building various web applications, taking care of frontend
+        side, but also covering different serverless scenarios and backend part
+        if needed. I can help you assess state of your application, analyze
+        issues and support stable growth. If you're interested, send me an email
+        at
+        <a class="underline" href="mailto:teodorpytka@gmail.com"
+          >teodorpytka@gmail.com</a
+        >.
+      </p>
+    </section>
+  </main>
 </Layout>

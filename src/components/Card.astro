@@ -1,0 +1,38 @@
+---
+const { title, text, secondaryText, link } = Astro.props
+---
+
+<a
+  rel="noopener noreferrer"
+  href={link}
+  target="_blank"
+  class="group relative flex w-full h-[360px] sm:h-[220px] rounded cursor-pointer"
+>
+  <div class="flex flex-col w-full z-10 p-10 gap-4">
+    <h1
+      class="z-10 text-4xl prose prose-white font-mono bg-clip-border group-hover:bg-clip-padding"
+    >
+      {title}
+    </h1>
+    <p
+      class="transition ease-in-out delay-150 prose prose-white font-mono text-base opacity-0 group-hover:opacity-100"
+    >
+      {text}
+    </p>
+    <p
+      class="transition ease-in-out delay-150 prose prose-white font-mono text-base opacity-0 group-hover:opacity-100"
+    >
+      {secondaryText}
+    </p>
+  </div>
+
+  <div
+    class="z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-lg"
+  >
+    <div
+      class="transition ease-in-out delay-150 group-hover:-translate-y-2 group-hover:scale-110 border rounded-lg brightness-70 group-hover:brightness-30 h-full w-full flex"
+    >
+      <slot />
+    </div>
+  </div>
+</a>

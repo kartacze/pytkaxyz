@@ -1,25 +1,55 @@
 ---
+import Card from './Card.astro'
+import { Image } from 'astro:assets'
+import ceiling from '../assets/ceiling.jpg' // Image is 1600x900
 
+const turpia = {
+  title: 'Turpia',
+  text: 'Money has no value, it is an information. And the information is priceless. Manage it correctly.',
+  secondaryText: 'My attempt to handle it better',
+  link: 'https://github.com/kartacze/turpia',
+}
 ---
 
-<main transition:animate="fade" class="flex flex-col items-start gap-10 relative">
-  <div class="flex flex-col">
-    <h1 class="text-4xl prose prose-truegray font-mono">Teodor Pytka</h1>
-    <h3 class="text-base prose prose-truegray font-mono mt-2">
-      Husband, Father, Full-stack Developer
-    </h3>
-  </div>
-  <div>
-    <p class="font-mono text-base">
-      I’m a full-stack developer based in Warsaw, Poland. I took part in
-      development of wide range of projects from content based pages to banking
-      and e-commerce application. From static to full-blown real-time apps.
-    </p>
-    <p class="font-mono text-base mt-4">
-      Actively exploring elixir lang and mobile landscape.
-    </p>
-  </div>
-  <a class="font-mono" href="/about"
-    >More on About page <div class="i-carbon-arrow-right mb-[2px]"></div></a
-  >
+<main
+  transition:animate="fade"
+  class="flex flex-col items-start gap-16 relative"
+>
+  <section class="flex flex-col gap-10">
+    <div class="flex flex-col">
+      <h1 class="text-4xl prose prose-truegray font-mono">Teodor Pytka</h1>
+      <h3 class="text-base prose prose-truegray font-mono mt-2">
+        Husband, Father, Full-stack Developer
+      </h3>
+    </div>
+    <div>
+      <p class="font-mono text-base">
+        I’m a full-stack developer based in Warsaw, Poland. I took part in
+        development of wide range of projects from content based pages to
+        banking and e-commerce application. From static to full-blown real-time
+        apps.
+      </p>
+      <p class="font-mono text-base mt-4">
+        Actively exploring elixir lang and mobile landscape.
+      </p>
+    </div>
+    <a class="font-mono" href="/about"
+      >More on About page <div class="i-carbon-arrow-right mb-[2px]"></div></a
+    >
+  </section>
+  <section class="flex flex-col gap-8 w-full">
+    <h1 class="text-3xl prose prose-truegray font-mono">Projects</h1>
+    <Card
+      title={turpia.title}
+      text={turpia.text}
+      link={turpia.link}
+      secondaryText={turpia.secondaryText}
+    >
+      <Image
+        class="w-full object-cover "
+        src={ceiling}
+        alt="Ceiling of some church."
+      />
+    </Card>
+  </section>
 </main>

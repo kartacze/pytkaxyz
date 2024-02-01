@@ -15,7 +15,6 @@
 </style>
 
 <script is:inline>
-  console.log('running again')
 
   var storedTheme =
     localStorage.getItem('theme') ||
@@ -25,10 +24,7 @@
   if (storedTheme)
     document.documentElement.setAttribute('data-theme', storedTheme)
 
-  console.log('stored theme', storedTheme)
-
   function setTheme(newDocument, theme) {
-    console.log('setTheme', theme)
     if (theme === 'dark') {
       newDocument.documentElement.classList.add('dark')
     } else {
@@ -43,14 +39,10 @@
   const setToggle = (newDocument) => {
     var toggle = newDocument.getElementById('theme-toggle')
 
-    console.log('new toggle', toggle)
-
     if (toggle) {
       toggle.onclick = function () {
         var currentTheme =
           newDocument.documentElement.getAttribute('data-theme')
-
-        console.log('current theme ', currentTheme)
 
         const targetTheme = currentTheme === 'dark' ? 'light' : 'dark'
         setTheme(newDocument, targetTheme)
@@ -60,14 +52,13 @@
       }
     }
   }
-
   setToggle(document)
 
   document.addEventListener('astro:before-swap', (ev) => {
-    // Pass the incoming document to set the theme on it
-    let theme = localStorage.getItem('theme')
-    console.log('thteme is ', theme)
-    setTheme(ev.newDocument, theme)
-    setToggle(ev.newDocument)
+    setTheme(ev.newDocument, localStorage.getItem('theme'))
+  })
+
+  document.addEventListener('astro:after-swap', (ev) => {
+    setToggle(document)
   })
 </script>

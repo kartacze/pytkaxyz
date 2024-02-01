@@ -22,15 +22,17 @@ const { title = 'Pytka.xyz' } = Astro.props
   </head>
   <body class="relative h-full dark:bg-black">
     <div
-      class="flex m-auto w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] sm:shadow-[0px_4px_23px_10px_#95553566]"
+      class="flex m-auto w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
     >
       <div
         id="color-blend"
-        class="absolute top-0 right-0 left-0 bottom-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80"
+        class="absolute top-0 right-0 left-0 bottom-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80 dark:opacity-100"
       >
       </div>
 
-      <div class="flex flex-row flex-1 w-full items-center sm:mx-20 mx-4 py-0 relative">
+      <div
+        class="flex flex-row flex-1 w-full items-center sm:mx-20 mx-4 py-0 relative"
+      >
         <article
           class="flex flex-1 flex-col min-h-full border-primary-800 sm:gap-12 gap-8"
         >

@@ -10,7 +10,7 @@ const { title, text, secondaryText, link } = Astro.props
 >
   <div class="flex flex-col w-full z-10 p-10 gap-4">
     <h1
-      class="z-10 text-4xl prose prose-white font-mono bg-clip-border group-hover:bg-clip-padding"
+      class="z-10 text-4xl prose prose-white font-mono group-hover:bg-clip-padding"
     >
       {title}
     </h1>
@@ -30,7 +30,7 @@ const { title, text, secondaryText, link } = Astro.props
     class="z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-lg"
   >
     <div
-      class="transition ease-in-out delay-150 group-hover:-translate-y-2 group-hover:scale-110 border rounded-lg brightness-70 group-hover:brightness-30 h-full w-full flex"
+      class="transition ease-in-out delay-150 duration-1000 group-hover:-translate-y-2 group-hover:scale-110 rounded-lg brightness-70 group-hover:brightness-30 h-full w-full flex"
     >
       <slot />
     </div>

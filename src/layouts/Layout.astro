@@ -20,13 +20,13 @@ const { title = 'Pytka.xyz' } = Astro.props
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="relative h-full dark:bg-black">
+  <body class="relative min-h-screen dark:bg-black">
     <div
-      class="flex m-auto w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
+      class="flex m-auto min-h-screen w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
     >
       <div
         id="color-blend"
-        class="absolute top-0 right-0 left-0 bottom-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80 dark:opacity-100"
+        class="h-screen w-screen fixed inset-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80 dark:opacity-100"
       >
       </div>
 

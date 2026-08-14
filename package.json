@@ -7,21 +7,23 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-types": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/netlify": "^8.2.1",
+    "@astrojs/cloudflare": "^14.2.1",
+    "@unocss/astro": "^66.7.5",
     "astro": "^7.2.2",
-    "astro-icon": "^1.0.2",
-    "typescript": "^5.3.3"
+    "astro-icon": "^1.1.5",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.123.0"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.1.28",
-    "@unocss/preset-icons": "^0.58.3",
-    "@unocss/reset": "^0.58.3",
-    "prettier": "^3.2.4",
-    "prettier-plugin-astro": "^0.13.0",
-    "unocss": "^0.58.3"
+    "@iconify-json/carbon": "^1.2.25",
+    "@unocss/preset-icons": "^66.7.5",
+    "@unocss/reset": "^66.7.5",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "unocss": "^66.7.5"
   }
 }

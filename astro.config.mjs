@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 
-import netlify from '@astrojs/netlify'
+import cloudflare from '@astrojs/cloudflare'
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,6 +10,13 @@ export default defineConfig({
       injectReset: true,
     }),
   ],
-  output: 'server',
-  adapter: netlify(),
+  output: 'static',
+
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+
+    imageService: 'cloudflare',
+  }),
 })

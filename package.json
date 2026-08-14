@@ -11,11 +11,12 @@
     "generate-types": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/cloudflare": "^14.2.1",
     "@unocss/astro": "^66.7.5",
     "astro": "^7.2.2",
     "astro-icon": "^1.1.5",
-    "typescript": "^7.0.2",
+    "typescript": "6.0.3",
     "wrangler": "^4.123.0"
   },
   "devDependencies": {

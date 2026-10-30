@@ -1,10 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { getCollection, render } from 'astro:content'
-// import type { GetStaticPaths } from 'astro'
+import { render } from 'astro:content'
+import { formatDate } from '../../utils/date'
+import { getPosts } from '../../utils/posts'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog')
+  const posts = await getPosts()
 
   return posts.map((post) => ({
     params: { slug: post.id },
@@ -16,7 +17,11 @@ const { post } = Astro.props
 const { Content } = await render(post)
 ---
 
-<Layout title={`${post.data.title} · Pytka.xyz`}>
+<Layout
+  title={`${post.data.title} · Pytka.xyz`}
+  description={post.data.description}
+  type="article"
+>
   <main
     transition:animate="fade"
     class="flex flex-col items-start gap-8 pb-8 w-full"
@@ -25,17 +30,17 @@ const { Content } = await render(post)
       <a href="/blog" class="font-mono text-sm underline text-primary"
         >← back to blog</a
       >
-      <h1 class="text-4xl prose prose-truegray font-mono">
+      <h1 class="text-4xl font-mono">
         {post.data.title}
       </h1>
       <p class="font-mono text-sm text-primary">
-        {post.data.pubDate.toDateString()}
+        {formatDate(post.data.pubDate)}
       </p>
       <p class="font-mono text-base">{post.data.description}</p>
     </section>
 
     <article
-      class="flex flex-col gap-4 prose dark:prose-invert prose-truegray max-w-none font-mono text-base w-full"
+      class="flex flex-col gap-4 prose dark:prose-invert max-w-none font-mono text-base w-full"
     >
       <Content />
     </article>

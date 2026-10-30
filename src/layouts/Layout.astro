@@ -1,24 +1,60 @@
 ---
+import { ClientRouter } from 'astro:transitions'
 import Header from '../components/Header.astro'
 
 interface Props {
   title?: string
+  description?: string
+  type?: 'website' | 'article'
 }
 
-const { title = 'Pytka.xyz' } = Astro.props
+const {
+  title = 'Teodor Pytka · Full-stack Developer',
+  description = 'Teodor Pytka, a full-stack developer based in Warsaw, Poland.',
+  type = 'website',
+} = Astro.props
+
+// Static pages are served as directories, so their canonical form ends in "/"
+const pathname = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`
+const canonical = new URL(pathname, Astro.site)
 ---
 
 <!doctype html>
 <html lang="en" class="h-full w-full antialiased bg-white">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Pytka.xyz" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <ClientRouter />
+    <!-- Runs before first paint so dark mode doesn't flash light. Only an
+         explicit toggle is stored; otherwise the OS preference is followed. -->
+    <script is:inline>
+      ;(() => {
+        const theme =
+          localStorage.getItem('theme') ??
+          (matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light')
+        document.documentElement.classList.toggle('dark', theme === 'dark')
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
-  <body class="relative min-h-screen dark:bg-black">
+  <body
+    class="relative min-h-screen text-neutral-800 dark:bg-black dark:text-neutral-200"
+  >
     <div
       class="flex m-auto min-h-screen w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
     >
@@ -31,9 +67,7 @@ const { title = 'Pytka.xyz' } = Astro.props
       <div
         class="flex flex-row flex-1 w-full items-center sm:mx-20 mx-4 py-0 relative"
       >
-        <article
-          class="flex flex-1 flex-col min-h-full border-primary-800 sm:gap-12 gap-8"
-        >
+        <article class="flex flex-1 flex-col min-h-full sm:gap-12 gap-8">
           <Header />
           <slot />
         </article>
@@ -76,15 +110,7 @@ const { title = 'Pytka.xyz' } = Astro.props
           #fff;
       }
       code {
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
+        font-family: var(--font-mono);
       }
     </style>
   </body>

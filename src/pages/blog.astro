@@ -1,42 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { formatDate } from '../utils/date'
+import { getPosts } from '../utils/posts'
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-)
+const posts = await getPosts()
 ---
 
-<Layout title="Blog · Pytka.xyz">
+<Layout
+  title="Blog · Pytka.xyz"
+  description="Notes, tutorials and thoughts by Teodor Pytka."
+>
   <main transition:animate="fade" class="flex flex-col items-start gap-8 pb-8">
-    <section class="flex flex-col gap-2 prose">
-      <h1 class="text-3xl prose-truegray font-mono">Blog</h1>
+    <section class="flex flex-col gap-2 prose dark:prose-invert">
+      <h1 class="text-3xl font-mono">Blog</h1>
       <p class="font-mono text-base">
-        Notes, tutorials and thoughts. By now the only plan for this blog is to
-        note everything I'm doing right now that I would like to recall some
-        time in the future. My memory is great but short.
+        Notes, tutorials and thoughts. For now, the only plan for this blog is
+        to write down what I'm working on that I'd like to recall in the future.
+        My memory is great, but short.
       </p>
     </section>
-
-    <ul class="flex flex-col gap-4 w-full">
-      {
-        posts.map((post) => (
-          <li>
-            <a
-              href={`/blog/${post.id}`}
-              class="group flex flex-col gap-1 rounded p-4 border border-primary-800/20 hover:border-primary"
-            >
-              <h2 class="font-mono text-xl group-hover:underline">
-                {post.data.title}
-              </h2>
-              <p class="font-mono text-sm text-primary">
-                {post.data.pubDate.toDateString()}
-              </p>
-              <p class="font-mono text-base">{post.data.description}</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    {
+      posts.length === 0 ? (
+        <p class="font-mono text-base">No posts yet.</p>
+      ) : (
+        <ul class="flex flex-col gap-4 w-full">
+          {posts.map((post) => (
+            <li>
+              <a
+                href={`/blog/${post.id}`}
+                class="group flex flex-col gap-1 rounded p-4 border border-primary/20 hover:border-primary"
+              >
+                <h2 class="font-mono text-xl group-hover:underline">
+                  {post.data.title}
+                </h2>
+                <p class="font-mono text-sm text-primary">
+                  {formatDate(post.data.pubDate)}
+                </p>
+                <p class="font-mono text-base">{post.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </main>
 </Layout>

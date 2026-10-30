@@ -1,37 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Bio from '../components/Bio.astro'
 ---
 
-<Layout>
+<Layout
+  title="About · Pytka.xyz"
+  description="About Teodor Pytka, a full-stack developer in Warsaw, Poland, open to short-term consulting."
+>
   <main transition:animate="fade" class="flex flex-col items-start gap-16 pb-8">
     <section class="flex flex-col gap-2 prose dark:prose-invert max-w-none">
       <div class="flex flex-col">
-        <h1 class="text-3xl prose prose-truegray font-mono">Teodor Pytka</h1>
+        <h1 class="text-3xl font-mono">Teodor Pytka</h1>
       </div>
-      <div>
-        <p class="font-mono text-base">
-          I’m a full-stack developer based in Warsaw, Poland. I took part in
-          development of wide range of projects from content based pages to
-          banking and e-commerce application. From static to full-blown
-          real-time apps.
-        </p>
-      </div>
+      <Bio />
       <p class="font-mono text-base">
-        Actively exploring elixir lang and mobile landscape, mainly by writing <a
+        Actively exploring Elixir and the mobile landscape, mainly by writing
+        the <a
           rel="noopener noreferrer"
           href="https://github.com/kartacze/turpia"
           target="_blank"
-          class="underline"
-          >Turpia
-        </a> application, that is currently a WIP.
+          class="underline">Turpia</a
+        > application, which is currently a work in progress.
       </p>
       <p class="font-mono text-base">
-        I'm open to short-term consulting work. I have over six years of
-        experience building various web applications, taking care of frontend
-        side, but also covering different serverless scenarios and backend part
-        if needed. I can help you assess state of your application, analyze
-        issues and support stable growth. If you're interested, send me an email
-        at
+        I'm open to short-term consulting work. I have over eight years of
+        experience building web applications, focusing on the frontend but also
+        covering serverless scenarios and the backend when needed. I can help
+        you assess the state of your application, analyze issues and support
+        stable growth. If you're interested, send me an email at
         <a class="underline" href="mailto:teodorpytka@gmail.com"
           >teodorpytka@gmail.com</a
         >.

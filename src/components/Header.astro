@@ -2,8 +2,14 @@
 import NavLink from '../components/NavLink.astro'
 import ThemeIcon from '../components/ThemeIcon.astro'
 
-const pathname = new URL(Astro.request.url).pathname
-const currentPath = pathname.slice(1) // remove the first "/"
+// Drop the trailing slash so "/about/" matches "/about"
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
+
+// Section links stay active on nested pages, e.g. /blog on /blog/some-post
+const isActive = (link: string) =>
+  link === '/'
+    ? currentPath === '/'
+    : currentPath === link || currentPath.startsWith(link + '/')
 
 const links = [
   {
@@ -18,6 +24,7 @@ const links = [
   <div class="flex self-stretch w-full flex-[0_0_auto] items-center my-4">
     <div class="flex justify-between flex-1 grow items-center relative">
       <nav
+        aria-label="Main"
         class="inline-flex items-center sm:gap-3 gap-2 relative flex-[0_0_auto]"
       >
         {
@@ -25,7 +32,7 @@ const links = [
             <NavLink
               link={link.link}
               title={link.title}
-              isActive={link.link === '/' + currentPath}
+              isActive={isActive(link.link)}
             />
           ))
         }
@@ -35,11 +42,13 @@ const links = [
           rel="noopener noreferrer"
           href="https://github.com/kartacze"
           target="_blank"
+          aria-label="GitHub (opens in a new tab)"
           class="w-7 h-7 i-carbon-logo-github dark:bg-white text-primary"></a>
         <a
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/teodor-pytka/"
           target="_blank"
+          aria-label="LinkedIn (opens in a new tab)"
           class="w-7 h-7 i-carbon-logo-linkedin dark:bg-white text-primary"></a>
         <div>
           <ThemeIcon />

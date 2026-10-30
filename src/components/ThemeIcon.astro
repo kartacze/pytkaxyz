@@ -1,10 +1,7 @@
----
-
----
-
 <button
   id="theme-toggle"
   type="button"
+  aria-label="Toggle dark mode"
   class="w-7 h-7 dark:w-7 dark:h-7 i-carbon-sun dark:i-carbon-moon bg-primary"
 ></button>
 
@@ -14,50 +11,28 @@
   }
 </style>
 
-<script is:inline>
-  var storedTheme =
-    localStorage.getItem('theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light')
-  if (storedTheme)
-    document.documentElement.setAttribute('data-theme', storedTheme)
-
-  function setTheme(newDocument, theme) {
-    if (theme === 'dark') {
-      newDocument.documentElement.classList.add('dark')
-    } else {
-      newDocument.documentElement.classList.remove('dark')
-    }
-    newDocument.documentElement.dataset.theme = theme
-    localStorage.setItem('theme', theme)
+<script>
+  // The initial theme is applied by the inline script in Layout's <head>.
+  const applyTheme = (doc: Document, theme: string) => {
+    doc.documentElement.classList.toggle('dark', theme === 'dark')
+    doc.documentElement.dataset.theme = theme
   }
 
-  setTheme(document, storedTheme)
-
-  const setToggle = (newDocument) => {
-    var toggle = newDocument.getElementById('theme-toggle')
-
-    if (toggle) {
-      toggle.onclick = function () {
-        var currentTheme =
-          newDocument.documentElement.getAttribute('data-theme')
-
-        const targetTheme = currentTheme === 'dark' ? 'light' : 'dark'
-        setTheme(newDocument, targetTheme)
-
-        newDocument.documentElement.setAttribute('data-theme', targetTheme)
-        localStorage.setItem('theme', targetTheme)
-      }
-    }
-  }
-  setToggle(document)
-
+  // Carry the current theme over to the incoming page on client-side navigation
   document.addEventListener('astro:before-swap', (ev) => {
-    setTheme(ev.newDocument, localStorage.getItem('theme'))
+    applyTheme(
+      ev.newDocument,
+      document.documentElement.dataset.theme ?? 'light'
+    )
   })
 
-  document.addEventListener('astro:after-swap', (ev) => {
-    setToggle(document)
+  // Fires on the first load and after every navigation (the button is replaced)
+  document.addEventListener('astro:page-load', () => {
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const theme =
+        document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+      applyTheme(document, theme)
+      localStorage.setItem('theme', theme)
+    })
   })
 </script>

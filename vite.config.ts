@@ -7,6 +7,7 @@ export default defineConfig({
     ignorePatterns: ['dist/**', '.astro/**', 'worker-configuration.d.ts'],
   },
   fmt: {
+    printWidth: 80,
     trailingComma: 'es5',
     tabWidth: 2,
     semi: false,

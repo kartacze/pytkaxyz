@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Projects from '../components/Projects.astro'
 ---
 
-<Layout>
-  <h1 class="i-carbon-windy text-4xl"></h1>
+<Layout title="Projects · Pytka.xyz" description="Projects by Teodor Pytka.">
+  <main transition:animate="fade" class="flex flex-col items-start gap-8 pb-8">
+    <h1 class="text-3xl font-mono">Projects</h1>
+    <Projects />
+  </main>
 </Layout>

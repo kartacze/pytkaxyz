@@ -1,0 +1,30 @@
+---
+import Card from './Card.astro'
+import { Image } from 'astro:assets'
+import ceiling from '../assets/ceiling.jpg' // Image is 1600x900
+
+const projects = [
+  {
+    title: 'Turpia',
+    text: 'Money has no value; it is information. And information is priceless. Manage it correctly.',
+    secondaryText: 'My attempt to handle it better.',
+    link: 'https://github.com/kartacze/turpia',
+    image: ceiling,
+  },
+]
+---
+
+<div class="flex flex-col gap-8 w-full">
+  {
+    projects.map((project) => (
+      <Card
+        title={project.title}
+        text={project.text}
+        link={project.link}
+        secondaryText={project.secondaryText}
+      >
+        <Image class="w-full object-cover" src={project.image} alt="" />
+      </Card>
+    ))
+  }
+</div>

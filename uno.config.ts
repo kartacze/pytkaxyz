@@ -8,22 +8,9 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-  rules: [
-    [
-      /^text-(.*)$/,
-      ([, c], { theme }) => {
-        if (theme.colors[c]) {
-          return {
-            color: theme.colors[c],
-          }
-        }
-      },
-    ],
-  ],
   theme: {
     colors: {
       primary: 'var(--brown)',
-      brown: 'var(--brown)',
     },
   },
   presets: [
@@ -39,7 +26,7 @@ export default defineConfig({
       provider: 'google',
       fonts: {
         sans: 'Roboto',
-        mono: ['IBM Plex Mono', 'IBM Plex Mono:300,400'],
+        mono: 'IBM Plex Mono:300,400',
       },
     }),
     presetTypography(),

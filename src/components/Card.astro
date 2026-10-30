@@ -6,30 +6,30 @@ const { title, text, secondaryText, link } = Astro.props
   rel="noopener noreferrer"
   href={link}
   target="_blank"
-  class="project-card group relative flex w-full h-[360px] sm:h-[220px] rounded cursor-pointer"
+  class="project-card group relative flex w-full h-[360px] sm:h-[240px] rounded-xl cursor-pointer shadow-[0_18px_40px_-20px_rgb(60_30_10/0.55)] transition-shadow hover:shadow-[0_24px_50px_-20px_rgb(60_30_10/0.7)]"
 >
-  <div class="flex flex-col w-full z-10 p-10 gap-4 text-white">
-    <h3 class="z-10 text-4xl font-mono group-hover:bg-clip-padding">
+  <div class="flex flex-col w-full z-10 p-8 sm:p-10 gap-3 text-white">
+    <h3 class="z-10 text-3xl font-mono font-medium">
       {title}
     </h3>
     <!-- Always visible on touch screens, revealed on hover/focus from sm up -->
     <p
-      class="transition ease-in-out delay-150 font-mono text-base sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
+      class="max-w-prose transition ease-in-out delay-150 font-sans text-base leading-relaxed sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
     >
       {text}
     </p>
     <p
-      class="transition ease-in-out delay-150 font-mono text-base sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
+      class="max-w-prose transition ease-in-out delay-150 font-sans text-base leading-relaxed sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
     >
       {secondaryText}
     </p>
   </div>
 
   <div
-    class="project-card-media z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-lg"
+    class="project-card-media z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-xl"
   >
     <div
-      class="transition ease-in-out delay-150 duration-1000 group-hover:-translate-y-2 group-hover:scale-110 rounded-lg brightness-50 sm:brightness-70 group-hover:brightness-30 h-full w-full flex"
+      class="transition ease-in-out delay-150 duration-1000 group-hover:-translate-y-2 group-hover:scale-110 brightness-50 sm:brightness-70 group-hover:brightness-30 h-full w-full flex rounded-xl"
     >
       <slot />
     </div>

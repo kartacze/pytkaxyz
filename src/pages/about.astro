@@ -7,13 +7,18 @@ import Bio from '../components/Bio.astro'
   title="About · Pytka.xyz"
   description="About Teodor Pytka, a full-stack developer in Warsaw, Poland, open to short-term consulting."
 >
-  <main transition:animate="fade" class="flex flex-col items-start gap-16 pb-8">
-    <section class="flex flex-col gap-2 prose dark:prose-invert max-w-none">
-      <div class="flex flex-col">
-        <h1 class="text-3xl font-mono">Teodor Pytka</h1>
-      </div>
+  <main
+    transition:animate="fade"
+    class="flex flex-col items-start gap-16 pb-12"
+  >
+    <section class="prose max-w-none">
+      <h1
+        class="not-prose mb-6 text-3xl sm:text-4xl font-mono font-medium tracking-tight text-ink"
+      >
+        Teodor Pytka
+      </h1>
       <Bio />
-      <p class="font-mono text-base">
+      <p class="font-sans text-lg leading-relaxed">
         Actively exploring Elixir and the mobile landscape, mainly by writing
         the <a
           rel="noopener noreferrer"
@@ -22,7 +27,7 @@ import Bio from '../components/Bio.astro'
           class="underline">Turpia</a
         > application, which is currently a work in progress.
       </p>
-      <p class="font-mono text-base">
+      <p class="font-sans text-lg leading-relaxed">
         I'm open to short-term consulting work. I have over eight years of
         experience building web applications, focusing on the frontend but also
         covering serverless scenarios and the backend when needed. I can help
@@ -32,7 +37,7 @@ import Bio from '../components/Bio.astro'
           >teodorpytka@gmail.com</a
         >.
       </p>
-      <p class="font-mono text-base">
+      <p class="font-sans text-lg leading-relaxed">
         You can find my résumé{' '}
         <a class="underline" href="/A_CV_TEODOR_PYTKA.pdf">here</a>.
       </p>

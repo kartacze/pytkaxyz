@@ -24,7 +24,7 @@ const canonical = new URL(pathname, Astro.site)
 ---
 
 <!doctype html>
-<html lang="en" class="h-full w-full antialiased bg-white">
+<html lang="en" class="h-full w-full antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,18 +56,10 @@ const canonical = new URL(pathname, Astro.site)
       document.documentElement.dataset.theme = theme
     </script>
   </head>
-  <body
-    class="relative min-h-screen text-neutral-800 dark:bg-black dark:text-neutral-200"
-  >
+  <body class="relative min-h-screen">
     <div
-      class="site-panel flex m-auto min-h-screen w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
+      class="site-panel flex m-auto min-h-screen w-full max-w-[920px] h-full"
     >
-      <div
-        id="color-blend"
-        class="h-screen w-screen fixed inset-0 mix-blend-color-burn [background:radial-gradient(50%_50%_at_50%_50%,rgba(42.67,111.93,167.88,0.45)_0%,rgba(149.81,85.71,53.06,0.4)_54.81%)] opacity-80 dark:opacity-100"
-      >
-      </div>
-
       <div
         class="flex flex-row flex-1 w-full items-center sm:mx-20 mx-4 py-0 relative"
       >
@@ -78,14 +70,30 @@ const canonical = new URL(pathname, Astro.site)
       </div>
     </div>
     <style is:global>
+      /* Original design tokens; the alternative designs in
+         src/styles/designs.css override these surfaces with their own. */
       :root {
-        --blue: #2b70a8;
-        --brown: #965635;
+        --brown: #9a5634;
+        --ink: #241d18;
+        --ink-soft: #4a3f37;
+        --muted: #85766a;
+        --rule: rgb(154 86 52 / 0.22);
+        --paper: #f7f1e8;
+        --panel: rgb(255 252 247 / 0.62);
+        --glow-warm: rgb(154 86 52 / 0.26);
+        --glow-cool: rgb(43 112 168 / 0.2);
       }
 
       html[data-theme='dark'] {
-        --blue: #aa00ff;
-        --brown: #905662;
+        --brown: #e0a27a;
+        --ink: #f3ebe1;
+        --ink-soft: #d3c8bc;
+        --muted: #9c8f83;
+        --rule: rgb(224 162 122 / 0.2);
+        --paper: #14110e;
+        --panel: rgb(30 25 21 / 0.72);
+        --glow-warm: rgb(224 162 122 / 0.14);
+        --glow-cool: rgb(106 166 216 / 0.12);
       }
 
       html {
@@ -101,18 +109,52 @@ const canonical = new URL(pathname, Astro.site)
       }
 
       body {
-        #color-blend {
-          mix-blend-mode: color-burn;
-        }
+        color: var(--ink-soft);
         background:
+          radial-gradient(60% 50% at 0% 0%, var(--glow-warm), transparent 70%),
           radial-gradient(
-            121.38% 73.52% at 50% 50%,
-            rgba(150, 86, 53, 0.4) 0%,
-            rgba(229, 191, 91, 0.34) 60.25%,
-            rgba(43, 112, 168, 0.45) 100%
+            55% 45% at 100% 100%,
+            var(--glow-cool),
+            transparent 70%
           ),
-          #fff;
+          var(--paper);
+        background-attachment: fixed;
       }
+
+      .site-panel {
+        background: var(--panel);
+      }
+
+      @media (min-width: 640px) {
+        .site-panel {
+          border-inline: 1px solid var(--rule);
+          box-shadow: 0 0 80px -30px rgb(60 30 10 / 0.35);
+        }
+      }
+
+      /* Warm the typography plugin's grays to match the palette */
+      html .prose {
+        --un-prose-body: var(--ink-soft);
+        --un-prose-headings: var(--ink);
+        --un-prose-lead: var(--ink-soft);
+        --un-prose-links: var(--brown);
+        --un-prose-bold: var(--ink);
+        --un-prose-counters: var(--muted);
+        --un-prose-bullets: var(--muted);
+        --un-prose-hr: var(--rule);
+        --un-prose-quotes: var(--ink);
+        --un-prose-quote-borders: var(--rule);
+        --un-prose-captions: var(--muted);
+        --un-prose-code: var(--ink);
+        --un-prose-pre-bg: #1f1a16;
+        --un-prose-th-borders: var(--rule);
+        --un-prose-td-borders: var(--rule);
+      }
+
+      ::selection {
+        background: rgb(154 86 52 / 0.25);
+      }
+
       code {
         font-family: var(--font-mono);
       }

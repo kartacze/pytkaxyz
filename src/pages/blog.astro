@@ -10,10 +10,17 @@ const posts = await getPosts()
   title="Blog · Pytka.xyz"
   description="Notes, tutorials and thoughts by Teodor Pytka."
 >
-  <main transition:animate="fade" class="flex flex-col items-start gap-8 pb-8">
-    <section class="flex flex-col gap-2 prose dark:prose-invert">
-      <h1 class="text-3xl font-mono">Blog</h1>
-      <p class="font-mono text-base">
+  <main
+    transition:animate="fade"
+    class="flex flex-col items-start gap-10 pb-12"
+  >
+    <section class="prose">
+      <h1
+        class="not-prose mb-6 text-3xl sm:text-4xl font-mono font-medium tracking-tight text-ink"
+      >
+        Blog
+      </h1>
+      <p class="font-sans text-lg leading-relaxed">
         Notes, tutorials and thoughts. For now, the only plan for this blog is
         to write down what I'm working on that I'd like to recall in the future.
         My memory is great, but short.
@@ -21,22 +28,24 @@ const posts = await getPosts()
     </section>
     {
       posts.length === 0 ? (
-        <p class="font-mono text-base">No posts yet.</p>
+        <p class="font-mono text-sm text-muted">No posts yet.</p>
       ) : (
         <ul class="flex flex-col gap-4 w-full">
           {posts.map((post) => (
             <li>
               <a
                 href={`/blog/${post.id}`}
-                class="post-item group flex flex-col gap-1 rounded p-4 border border-primary/20 hover:border-primary"
+                class="post-item group flex flex-col gap-1.5 rounded-xl p-5 border border-[var(--rule)] bg-[var(--panel)] transition-colors hover:border-primary"
               >
-                <h2 class="font-mono text-xl group-hover:underline">
+                <h2 class="font-mono text-lg font-medium text-ink group-hover:text-primary transition-colors">
                   {post.data.title}
                 </h2>
-                <p class="font-mono text-sm text-primary">
+                <p class="font-mono text-xs uppercase tracking-widest text-muted">
                   {formatDate(post.data.pubDate)}
                 </p>
-                <p class="font-mono text-base">{post.data.description}</p>
+                <p class="font-sans text-base leading-relaxed">
+                  {post.data.description}
+                </p>
               </a>
             </li>
           ))}

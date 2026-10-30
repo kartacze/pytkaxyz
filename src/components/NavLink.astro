@@ -5,7 +5,7 @@ const { title, link, isActive } = Astro.props
 <a
   href={link}
   aria-current={isActive ? 'page' : undefined}
-  class={`font-normal text-base sm:text-xl tracking-[0] leading-[normal] [text-transform:capitalize] text-primary ${isActive ? '' : 'opacity-60'}`}
+  class={`text-base sm:text-lg leading-[normal] [text-transform:capitalize] transition-colors ${isActive ? 'text-primary underline decoration-2 underline-offset-8' : 'text-muted hover:text-primary'}`}
 >
   {title}
 </a>

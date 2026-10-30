@@ -26,21 +26,23 @@ const { Content } = await render(post)
     transition:animate="fade"
     class="flex flex-col items-start gap-8 pb-8 w-full"
   >
-    <section class="flex flex-col gap-2">
-      <a href="/blog" class="font-mono text-sm underline text-primary"
+    <section class="flex flex-col gap-3">
+      <a href="/blog" class="font-mono text-sm text-primary hover:underline"
         >← back to blog</a
       >
-      <h1 class="text-4xl font-mono">
+      <h1
+        class="text-3xl sm:text-4xl font-mono font-medium tracking-tight text-ink"
+      >
         {post.data.title}
       </h1>
-      <p class="font-mono text-sm text-primary">
+      <p class="font-mono text-xs uppercase tracking-widest text-muted">
         {formatDate(post.data.pubDate)}
       </p>
-      <p class="font-mono text-base">{post.data.description}</p>
+      <p class="font-sans text-lg leading-relaxed">{post.data.description}</p>
     </section>
 
     <article
-      class="flex flex-col gap-4 prose dark:prose-invert max-w-none font-mono text-base w-full"
+      class="flex flex-col gap-4 prose prose-lg max-w-none font-sans w-full"
     >
       <Content />
     </article>

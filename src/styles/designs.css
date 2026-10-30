@@ -16,10 +16,6 @@
   font-family: var(--d-body-font);
 }
 
-:root[data-design] #color-blend {
-  display: none;
-}
-
 :root[data-design] .site-panel {
   background: var(--d-panel);
   box-shadow: var(--d-panel-shadow, none);
@@ -33,6 +29,7 @@
 }
 
 :root[data-design] header nav a {
+  text-decoration: none;
   font-family: var(--d-ui-font);
   color: var(--d-muted);
   opacity: 1;

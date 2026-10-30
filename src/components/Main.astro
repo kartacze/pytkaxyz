@@ -3,30 +3,34 @@ import Bio from './Bio.astro'
 import Projects from './Projects.astro'
 ---
 
-<main transition:animate="fade" class="flex flex-col items-start gap-16 pb-4">
-  <section
-    class="flex flex-col gap-10 prose dark:prose-invert max-w-none font-mono"
-  >
-    <div class="flex flex-col">
-      <h1 class="text-3xl font-mono">Teodor Pytka</h1>
-      <span class="text-base font-mono">
+<main transition:animate="fade" class="flex flex-col items-start gap-16 pb-12">
+  <section class="flex flex-col gap-8 prose max-w-none">
+    <div class="not-prose flex flex-col gap-3">
+      <h1
+        class="text-4xl sm:text-5xl font-mono font-medium tracking-tight text-ink"
+      >
+        Teodor Pytka
+      </h1>
+      <span class="text-sm font-mono uppercase tracking-widest text-muted">
         Husband, Father, Full-stack Developer
       </span>
     </div>
     <div>
       <Bio />
-      <p class="font-mono text-base mt-4">
+      <p class="font-sans text-lg leading-relaxed mt-4">
         Actively exploring Elixir and the mobile landscape.
       </p>
     </div>
-    <a class="font-mono" href="/about"
+    <a class="font-mono text-sm" href="/about"
       >More on About page <span
         class="i-carbon-arrow-right mb-[2px]"
         aria-hidden="true"></span></a
     >
   </section>
-  <section class="flex flex-col gap-8 w-full">
-    <h2 class="text-3xl font-mono">Projects</h2>
+  <section class="flex flex-col gap-6 w-full">
+    <h2 class="text-sm font-mono uppercase tracking-widest text-muted">
+      Projects
+    </h2>
     <Projects />
   </section>
 </main>

@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
+import mdx from '@astrojs/mdx'
 
 import cloudflare from '@astrojs/cloudflare'
 
@@ -9,6 +10,7 @@ export default defineConfig({
     UnoCSS({
       injectReset: true,
     }),
+    mdx(),
   ],
   output: 'static',
 

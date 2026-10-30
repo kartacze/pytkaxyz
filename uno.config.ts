@@ -1,10 +1,10 @@
 import {
   defineConfig,
-  presetUno,
   presetIcons,
   presetWebFonts,
   presetAttributify,
   presetTypography,
+  presetWind4,
 } from 'unocss'
 
 export default defineConfig({
@@ -27,8 +27,8 @@ export default defineConfig({
     },
   },
   presets: [
+    presetWind4(),
     presetAttributify(),
-    presetUno(),
     presetIcons({
       extraProperties: {
         display: 'inline-block',

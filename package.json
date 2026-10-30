@@ -1,18 +1,22 @@
 {
   "name": "pytkaxyz",
-  "type": "module",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "lint": "vp lint",
+    "fmt": "vp fmt && prettier --write \"src/**/*.astro\"",
+    "check": "vp check && prettier --check \"src/**/*.astro\" && astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/cloudflare": "^14.2.1",
+    "@astrojs/mdx": "^7.0.5",
     "@unocss/astro": "^66.7.5",
     "astro": "^7.2.2",
     "astro-icon": "^1.1.5",
@@ -22,9 +26,16 @@
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.25",
     "@unocss/preset-icons": "^66.7.5",
+    "@unocss/preset-typography": "^66.7.5",
+    "@unocss/preset-wind4": "^66.7.5",
     "@unocss/reset": "^66.7.5",
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
-    "unocss": "^66.7.5"
+    "unocss": "^66.7.5",
+    "vite-plus": "^1.4.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.4.0",
+    "vitest": "5.0.5"
   }
 }

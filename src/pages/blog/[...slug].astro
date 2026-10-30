@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { getCollection, render } from 'astro:content'
+// import type { GetStaticPaths } from 'astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+---
+
+<Layout title={`${post.data.title} · Pytka.xyz`}>
+  <main
+    transition:animate="fade"
+    class="flex flex-col items-start gap-8 pb-8 w-full"
+  >
+    <section class="flex flex-col gap-2">
+      <a href="/blog" class="font-mono text-sm underline text-primary"
+        >← back to blog</a
+      >
+      <h1 class="text-4xl prose prose-truegray font-mono">
+        {post.data.title}
+      </h1>
+      <p class="font-mono text-sm text-primary">
+        {post.data.pubDate.toDateString()}
+      </p>
+      <p class="font-mono text-base">{post.data.description}</p>
+    </section>
+
+    <article
+      class="flex flex-col gap-4 prose dark:prose-invert prose-truegray max-w-none font-mono text-base w-full"
+    >
+      <Content />
+    </article>
+  </main>
+</Layout>

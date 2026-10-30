@@ -1,0 +1,14 @@
+<button
+  id="mdx-counter"
+  class="font-mono text-base px-4 py-2 rounded bg-primary text-white cursor-pointer"
+  type="button">count: 0</button
+>
+
+<script>
+  const button = document.getElementById('mdx-counter')!
+  let count = 0
+  button.addEventListener('click', () => {
+    count += 1
+    button.textContent = `count: ${count}`
+  })
+</script>

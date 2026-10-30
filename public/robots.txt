@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pytka.xyz/sitemap-index.xml

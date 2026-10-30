@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
 
 import cloudflare from '@astrojs/cloudflare'
 
@@ -12,6 +13,7 @@ export default defineConfig({
       injectReset: true,
     }),
     mdx(),
+    sitemap(),
   ],
   output: 'static',
   // Fully static site: skip the KV namespace the adapter provisions for sessions

@@ -26,7 +26,10 @@ export default defineConfig({
       provider: 'google',
       fonts: {
         sans: 'Roboto',
-        mono: 'IBM Plex Mono:300,400',
+        mono: 'IBM Plex Mono:300,400,500',
+        // Used by the Terminal and Dusk designs (src/styles/designs.css)
+        inter: 'Inter:400,500,600,700',
+        grotesk: 'Space Grotesk:500,700',
       },
     }),
     presetTypography(),

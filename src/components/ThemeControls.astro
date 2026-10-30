@@ -1,0 +1,76 @@
+<button
+  id="design-toggle"
+  type="button"
+  aria-label="Switch design"
+  class="site-icon w-6 h-6 sm:w-7 sm:h-7 dark:w-6 dark:h-6 sm:dark:w-7 sm:dark:h-7 i-carbon-color-palette bg-primary dark:bg-white"
+></button>
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle dark mode"
+  class="site-icon w-6 h-6 sm:w-7 sm:h-7 dark:w-6 dark:h-6 sm:dark:w-7 sm:dark:h-7 i-carbon-sun dark:i-carbon-moon bg-primary"
+></button>
+
+<style>
+  :global(.dark) {
+    color-scheme: dark;
+  }
+</style>
+
+<script>
+  import { designs } from '../designs'
+
+  // The palette cycles the original ('') and each design; the sun/moon button
+  // switches light/dark independently. The initial state is applied by the
+  // inline script in Layout's <head>.
+  const cycle = [{ id: '', name: 'Original' }, ...designs]
+
+  const apply = (doc: Document, design: string, theme: string) => {
+    const root = doc.documentElement
+    if (design) root.dataset.design = design
+    else delete root.dataset.design
+    root.classList.toggle('dark', theme === 'dark')
+    root.dataset.theme = theme
+  }
+
+  const current = () => ({
+    design: document.documentElement.dataset.design ?? '',
+    theme: document.documentElement.dataset.theme ?? 'light',
+  })
+
+  // Name the active design on the palette button (tooltip and screen readers)
+  const labelDesignButton = () => {
+    const button = document.getElementById('design-toggle')
+    const name =
+      cycle.find((d) => d.id === current().design)?.name ?? 'Original'
+    button?.setAttribute('aria-label', `Switch design (current: ${name})`)
+    button?.setAttribute('title', `Design: ${name}`)
+  }
+
+  // Carry the active design and theme over on client-side navigation
+  document.addEventListener('astro:before-swap', (ev) => {
+    const { design, theme } = current()
+    apply(ev.newDocument, design, theme)
+  })
+
+  // Fires on the first load and after every navigation (the buttons are replaced)
+  document.addEventListener('astro:page-load', () => {
+    labelDesignButton()
+
+    document.getElementById('design-toggle')?.addEventListener('click', () => {
+      const { design, theme } = current()
+      const index = cycle.findIndex((d) => d.id === design)
+      const next = cycle[(index + 1) % cycle.length].id
+      localStorage.setItem('design', next)
+      apply(document, next, theme)
+      labelDesignButton()
+    })
+
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const { design, theme } = current()
+      const next = theme === 'dark' ? 'light' : 'dark'
+      localStorage.setItem('theme', next)
+      apply(document, design, next)
+    })
+  })
+</script>

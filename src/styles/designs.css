@@ -1,0 +1,302 @@
+/*
+ * Alternative designs, picked with the palette button (see src/designs.ts).
+ * Without data-design the original styles in the markup apply.
+ *
+ * Each design sets --d-* tokens per mode ([data-theme='light'|'dark']); the
+ * shared rules map them onto the existing markup. `:root[data-design]`
+ * outranks the `dark:` utilities, so no !important is needed.
+ */
+
+/* ---------- Shared mapping ---------- */
+
+:root[data-design] body {
+  background: var(--d-bg);
+  background-attachment: fixed;
+  color: var(--d-text);
+  font-family: var(--d-body-font);
+}
+
+:root[data-design] #color-blend {
+  display: none;
+}
+
+:root[data-design] .site-panel {
+  background: var(--d-panel);
+  box-shadow: var(--d-panel-shadow, none);
+  border-inline: var(--d-panel-border, none);
+  backdrop-filter: var(--d-panel-filter, none);
+}
+
+:root[data-design] .site-rule {
+  background: var(--d-rule);
+  height: var(--d-rule-width, 1px);
+}
+
+:root[data-design] header nav a {
+  font-family: var(--d-ui-font);
+  color: var(--d-muted);
+  opacity: 1;
+  text-transform: var(--d-nav-case, capitalize);
+  transition: color 0.15s;
+}
+
+:root[data-design] header nav a:hover,
+:root[data-design] header nav a[aria-current='page'] {
+  color: var(--d-accent);
+}
+
+:root[data-design] .site-icon {
+  background-color: var(--d-icon);
+}
+
+:root[data-design] main :is(h1, h2, h3) {
+  font-family: var(--d-heading-font);
+  color: var(--d-heading);
+  font-weight: var(--d-heading-weight, 600);
+}
+
+:root[data-design] main :is(p, li, span, a) {
+  font-family: var(--d-body-font);
+}
+
+:root[data-design] main .text-primary {
+  color: var(--d-accent);
+  font-family: var(--d-ui-font);
+}
+
+:root[data-design] .prose {
+  --un-prose-body: var(--d-text);
+  --un-prose-headings: var(--d-heading);
+  --un-prose-links: var(--d-link);
+  --un-prose-bold: var(--d-heading);
+  --un-prose-code: var(--d-heading);
+  --un-prose-pre-bg: var(--d-code-bg);
+  --un-prose-hr: var(--d-muted);
+}
+
+:root[data-design] .prose a,
+:root[data-design] main a.underline {
+  color: var(--d-link);
+  text-decoration-color: color-mix(in srgb, var(--d-link) 45%, transparent);
+  text-underline-offset: 3px;
+}
+
+/* Project cards keep white text over the image */
+:root[data-design] .project-card {
+  border-radius: var(--d-radius);
+  border: var(--d-card-border, none);
+  box-shadow: var(--d-card-shadow, none);
+  overflow: hidden;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+:root[data-design] .project-card-media,
+:root[data-design] .project-card-media > div {
+  border-radius: 0;
+}
+
+:root[data-design] .project-card img {
+  filter: var(--d-img-filter, none);
+}
+
+:root[data-design] .project-card h3 {
+  color: #fff;
+}
+
+:root[data-design] .post-item {
+  border: var(--d-card-border, 1px solid var(--d-muted));
+  border-radius: var(--d-radius);
+  background: var(--d-surface);
+  box-shadow: var(--d-card-shadow, none);
+  transition: border-color 0.2s;
+}
+
+:root[data-design] .post-item:hover {
+  border-color: var(--d-accent);
+}
+
+/* ---------- Terminal: all mono, command-line details ---------- */
+
+:root[data-design='terminal'] {
+  --d-radius: 2px;
+  --d-heading-font: 'IBM Plex Mono', monospace;
+  --d-body-font: 'IBM Plex Mono', monospace;
+  --d-ui-font: 'IBM Plex Mono', monospace;
+  --d-heading-weight: 500;
+  --d-nav-case: lowercase;
+}
+
+:root[data-design='terminal'][data-theme='dark'] {
+  --d-bg: #0b0d0b;
+  --d-panel: #0b0d0b;
+  --d-panel-border: 1px solid #1c241c;
+  --d-text: #b8c4b0;
+  --d-heading: #e6f2dc;
+  --d-muted: #6b7a66;
+  --d-accent: #7ee08a;
+  --d-link: #f2c76e;
+  --d-rule: repeating-linear-gradient(
+    90deg,
+    #3c5a3c 0 8px,
+    transparent 8px 14px
+  );
+  --d-icon: #7ee08a;
+  --d-surface: #101410;
+  --d-code-bg: #101410;
+  --d-card-border: 1px solid #2f4a2f;
+  --d-img-filter: grayscale(1) sepia(0.4) hue-rotate(60deg) saturate(1.5)
+    brightness(0.85);
+}
+
+/* Light: a pale green-tinted "printout" with darker inks for contrast */
+:root[data-design='terminal'][data-theme='light'] {
+  --d-bg: #eef2e8;
+  --d-panel: #f6f8f2;
+  --d-panel-border: 1px solid #d5ddcc;
+  --d-text: #33402f;
+  --d-heading: #142113;
+  --d-muted: #6e7d68;
+  --d-accent: #1d7a35;
+  --d-link: #8a5a00;
+  --d-rule: repeating-linear-gradient(
+    90deg,
+    #9db59a 0 8px,
+    transparent 8px 14px
+  );
+  --d-icon: #1d7a35;
+  --d-surface: #ffffff;
+  --d-code-bg: #1b2219;
+  --d-card-border: 1px solid #b9cdb5;
+  --d-img-filter: grayscale(1) sepia(0.35) hue-rotate(60deg) saturate(1.3)
+    brightness(0.95);
+}
+
+:root[data-design='terminal'] header nav a::before {
+  content: '~/';
+  opacity: 0.5;
+}
+
+:root[data-design='terminal'] main h1::before {
+  content: '$ ';
+  color: var(--d-accent);
+}
+
+:root[data-design='terminal'] main h1::after {
+  content: '▋';
+  margin-left: 0.15em;
+  color: var(--d-accent);
+  animation: design-blink 1.1s steps(1) infinite;
+}
+
+:root[data-design='terminal'] main h2::before {
+  content: '# ';
+  color: var(--d-muted);
+}
+
+:root[data-design='terminal'] .project-card:hover img {
+  filter: none;
+}
+
+@keyframes design-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-design='terminal'] main h1::after {
+    animation: none;
+  }
+}
+
+/* ---------- Dusk: soft glows, glass panel ---------- */
+
+:root[data-design='dusk'] {
+  --d-radius: 18px;
+  --d-panel-filter: blur(14px);
+  --d-heading-font: 'Space Grotesk', system-ui, sans-serif;
+  --d-body-font: 'Inter', system-ui, sans-serif;
+  --d-ui-font: 'Space Grotesk', system-ui, sans-serif;
+  --d-heading-weight: 500;
+}
+
+:root[data-design='dusk'][data-theme='dark'] {
+  --d-bg:
+    radial-gradient(60% 50% at 15% 10%, rgb(150 86 53 / 0.35), transparent 70%),
+    radial-gradient(
+      50% 50% at 90% 30%,
+      rgb(43 112 168 / 0.35),
+      transparent 70%
+    ),
+    radial-gradient(
+      70% 60% at 50% 100%,
+      rgb(120 60 140 / 0.3),
+      transparent 70%
+    ),
+    #0c0f1a;
+  --d-panel: rgb(255 255 255 / 0.035);
+  --d-panel-border: 1px solid rgb(255 255 255 / 0.07);
+  --d-text: #c9cede;
+  --d-heading: #f4f1ec;
+  --d-muted: #8a90a6;
+  --d-accent: #f0a77e;
+  --d-link: #9cc1ff;
+  --d-rule: linear-gradient(90deg, #f0a77e, #9cc1ff 60%, transparent);
+  --d-icon: #e9e6f0;
+  --d-surface: rgb(255 255 255 / 0.04);
+  --d-code-bg: rgb(0 0 0 / 0.35);
+  --d-card-border: 1px solid rgb(255 255 255 / 0.1);
+  --d-card-shadow: 0 12px 40px -12px rgb(240 167 126 / 0.35);
+  --d-name-gradient: linear-gradient(90deg, #f4f1ec 30%, #f0a77e);
+}
+
+/* Light ("dawn"): the same glows as pastels on a pale lilac base */
+:root[data-design='dusk'][data-theme='light'] {
+  --d-bg:
+    radial-gradient(
+      60% 50% at 15% 10%,
+      rgb(240 167 126 / 0.35),
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 50% at 90% 30%,
+      rgb(120 160 230 / 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      70% 60% at 50% 100%,
+      rgb(190 160 230 / 0.3),
+      transparent 70%
+    ),
+    #f7f5fb;
+  --d-panel: rgb(255 255 255 / 0.55);
+  --d-panel-border: 1px solid rgb(20 20 40 / 0.06);
+  --d-text: #3d4256;
+  --d-heading: #161a2b;
+  --d-muted: #6c7290;
+  --d-accent: #c4632f;
+  --d-link: #2f5fc4;
+  --d-rule: linear-gradient(90deg, #e08a5c, #6d95e6 60%, transparent);
+  --d-icon: #22273a;
+  --d-surface: rgb(255 255 255 / 0.6);
+  --d-code-bg: #1d2133;
+  --d-card-border: 1px solid rgb(20 20 40 / 0.08);
+  --d-card-shadow: 0 12px 40px -12px rgb(196 99 47 / 0.35);
+  --d-name-gradient: linear-gradient(90deg, #161a2b 30%, #c4632f);
+}
+
+:root[data-design='dusk'] main h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  padding-bottom: 0.1em;
+  background: var(--d-name-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root[data-design='dusk'] .project-card:hover {
+  transform: translateY(-3px);
+}

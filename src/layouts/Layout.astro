@@ -1,6 +1,8 @@
 ---
 import { ClientRouter } from 'astro:transitions'
 import Header from '../components/Header.astro'
+import { designs } from '../designs'
+import '../styles/designs.css'
 
 interface Props {
   title?: string
@@ -39,25 +41,26 @@ const canonical = new URL(pathname, Astro.site)
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
     <ClientRouter />
-    <!-- Runs before first paint so dark mode doesn't flash light. Only an
-         explicit toggle is stored; otherwise the OS preference is followed. -->
-    <script is:inline>
-      ;(() => {
-        const theme =
-          localStorage.getItem('theme') ??
-          (matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light')
-        document.documentElement.classList.toggle('dark', theme === 'dark')
-        document.documentElement.dataset.theme = theme
-      })()
+    <!-- Runs before first paint so the design and theme don't flash. Both are
+         stored by the header buttons; without a stored theme the OS
+         preference is followed. -->
+    <script is:inline define:vars={{ designs }}>
+      const design = designs.find(
+        (d) => d.id === localStorage.getItem('design')
+      )
+      const theme =
+        localStorage.getItem('theme') ??
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      if (design) document.documentElement.dataset.design = design.id
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+      document.documentElement.dataset.theme = theme
     </script>
   </head>
   <body
     class="relative min-h-screen text-neutral-800 dark:bg-black dark:text-neutral-200"
   >
     <div
-      class="flex m-auto min-h-screen w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
+      class="site-panel flex m-auto min-h-screen w-full max-w-[920px] h-full sm:bg-[#fffdfdaa] dark:bg-[#232211] sm:shadow-[0px_4px_23px_10px_#95553566]"
     >
       <div
         id="color-blend"

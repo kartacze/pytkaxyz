@@ -6,7 +6,7 @@ const { title, text, secondaryText, link } = Astro.props
   rel="noopener noreferrer"
   href={link}
   target="_blank"
-  class="group relative flex w-full h-[360px] sm:h-[220px] rounded cursor-pointer"
+  class="project-card group relative flex w-full h-[360px] sm:h-[220px] rounded cursor-pointer"
 >
   <div class="flex flex-col w-full z-10 p-10 gap-4 text-white">
     <h3 class="z-10 text-4xl font-mono group-hover:bg-clip-padding">
@@ -26,7 +26,7 @@ const { title, text, secondaryText, link } = Astro.props
   </div>
 
   <div
-    class="z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-lg"
+    class="project-card-media z-0 transition ease-in-out delay-250 absolute inset-0 flex overflow-hidden content-center items-center rounded-lg"
   >
     <div
       class="transition ease-in-out delay-150 duration-1000 group-hover:-translate-y-2 group-hover:scale-110 rounded-lg brightness-50 sm:brightness-70 group-hover:brightness-30 h-full w-full flex"

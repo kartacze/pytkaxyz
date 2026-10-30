@@ -28,7 +28,7 @@ const posts = await getPosts()
             <li>
               <a
                 href={`/blog/${post.id}`}
-                class="group flex flex-col gap-1 rounded p-4 border border-primary/20 hover:border-primary"
+                class="post-item group flex flex-col gap-1 rounded p-4 border border-primary/20 hover:border-primary"
               >
                 <h2 class="font-mono text-xl group-hover:underline">
                   {post.data.title}

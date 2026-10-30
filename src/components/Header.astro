@@ -1,6 +1,6 @@
 ---
 import NavLink from '../components/NavLink.astro'
-import ThemeIcon from '../components/ThemeIcon.astro'
+import ThemeControls from '../components/ThemeControls.astro'
 
 // Drop the trailing slash so "/about/" matches "/about"
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
@@ -20,7 +20,7 @@ const links = [
 ]
 ---
 
-<div class="flex flex-col items-start my-4 relative font-mono">
+<header class="flex flex-col items-start my-4 relative font-mono">
   <div class="flex self-stretch w-full flex-[0_0_auto] items-center my-4">
     <div
       class="flex flex-wrap justify-between flex-1 grow items-center gap-x-3 gap-y-3 relative"
@@ -45,20 +45,18 @@ const links = [
           href="https://github.com/kartacze"
           target="_blank"
           aria-label="GitHub (opens in a new tab)"
-          class="w-6 h-6 sm:w-7 sm:h-7 i-carbon-logo-github dark:bg-white text-primary"
+          class="site-icon w-6 h-6 sm:w-7 sm:h-7 i-carbon-logo-github dark:bg-white text-primary"
         ></a>
         <a
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/teodor-pytka/"
           target="_blank"
           aria-label="LinkedIn (opens in a new tab)"
-          class="w-6 h-6 sm:w-7 sm:h-7 i-carbon-logo-linkedin dark:bg-white text-primary"
+          class="site-icon w-6 h-6 sm:w-7 sm:h-7 i-carbon-logo-linkedin dark:bg-white text-primary"
         ></a>
-        <div>
-          <ThemeIcon />
-        </div>
+        <ThemeControls />
       </div>
     </div>
   </div>
-  <div class="h-[2px] bg-primary w-full"></div>
-</div>
+  <div class="site-rule h-[2px] bg-primary w-full"></div>
+</header>

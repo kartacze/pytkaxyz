@@ -2,6 +2,7 @@
 import Card from './Card.astro'
 import { Image } from 'astro:assets'
 import ceiling from '../assets/ceiling.jpg' // Image is 1600x900
+import assimilation from '../assets/assimilation.jpg' // Image is 1600x900
 
 const projects = [
   {
@@ -10,6 +11,13 @@ const projects = [
     secondaryText: 'My attempt to handle it better.',
     link: 'https://github.com/kartacze/turpia',
     image: ceiling,
+  },
+  {
+    title: 'Assimilation',
+    text: 'My playground for machine learning in robotics. The plan: a simple simulator where I can try out motion, control and learning, before anything touches real hardware.',
+    secondaryText: 'It starts small: a pendulum, a two-jointed arm and a balancing cart. Try it in your browser.',
+    link: '/assimilation/',
+    image: assimilation,
   },
 ]
 ---
